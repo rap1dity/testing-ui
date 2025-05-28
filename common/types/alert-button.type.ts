@@ -1,0 +1,1 @@
+export type AlertButton = 'alertButton' | 'timerAlertButton' | 'confirmButton' | 'promptButton';
