@@ -4,7 +4,6 @@ export default defineConfig({
   testDir: './tests',
   use: {
     baseURL: 'https://demoqa.com',
-    headless: false,
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     viewport: { width: 1920, height: 1080 },
