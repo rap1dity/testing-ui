@@ -4,7 +4,7 @@ import UserCreator from '@common/utils/data-generator';
 import { IUserData } from '@common/interfaces/user-data.interface';
 
 export class FormPage extends BasePage {
-  private selectors: Record<string, Locator>;
+  private readonly selectors: Record<string, Locator>;
 
   constructor(page: Page) {
     super(page);
