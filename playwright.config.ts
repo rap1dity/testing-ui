@@ -9,6 +9,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     viewport: { width: 1920, height: 1080 },
   },
+  workers: process.env.CI ? 4 : undefined,
   retries: 1,
   reporter: [['html', { open: 'never' }]],
   projects: [
