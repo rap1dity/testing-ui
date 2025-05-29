@@ -112,9 +112,3 @@ After BDD test execution, a JSON report is saved:
 ```
 test-reports/report.json
 ```
-
-You can later convert it to an HTML report using tools like:
-
-```bash
-npx cucumber-html-reporter --theme bootstrap --jsonFile test-reports/report.json --output report.html
-```
