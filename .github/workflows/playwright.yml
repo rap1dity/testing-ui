@@ -10,6 +10,9 @@ on:
 
 jobs:
   test:
+    env:
+      CI: false
+      HEADLESS: true
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +30,11 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
 
-      - name: Run tests
-        run: npx playwright test
+      - name: Run Playwright tests
+        run: npm run test
+
+      - name: Run Cucumber tests
+        run: npm run bdd
 
       - name: Upload HTML report
         if: always()

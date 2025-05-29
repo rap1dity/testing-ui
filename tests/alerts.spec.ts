@@ -38,7 +38,10 @@ test('Alerts: handle confirm alert', async ({ page }) => {
     });
 
     await alertsPage.clickButton('confirmButton');
-    await expect(page.locator('#confirmResult')).toHaveText('You selected Ok');
+
+    const confirmResult = await alertsPage.getConfirmResult();
+
+    expect(confirmResult).toBe('You selected Ok');
   });
 
   await test.step('Handle prompt alert', async () => {
@@ -52,7 +55,10 @@ test('Alerts: handle confirm alert', async ({ page }) => {
     });
 
     await alertsPage.clickButton('promptButton');
-    await expect(page.locator('#promptResult')).toHaveText(`You entered ${inputText}`);
+
+    const promptResult = await alertsPage.getPromptResult();
+
+    expect(promptResult).toBe(`You entered ${inputText}`);
   });
 });
 
