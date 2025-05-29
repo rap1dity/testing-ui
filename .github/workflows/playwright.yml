@@ -30,8 +30,11 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
 
-      - name: Run tests
+      - name: Run Playwright tests
         run: npm run test
+
+      - name: Run Cucumber tests
+        run: npm run bdd
 
       - name: Upload HTML report
         if: always()
