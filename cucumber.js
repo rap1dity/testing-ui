@@ -6,6 +6,7 @@ module.exports = {
     worldParameters: {
       appUrl: 'https://demoqa.com'
     },
+    headless: process.env.HEADLESS === 'true',
     paths: ['src/features/**/*.feature'],
     timeout: 20000
   }
