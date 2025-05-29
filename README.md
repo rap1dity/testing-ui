@@ -1,82 +1,120 @@
-## Automated testing Project
+# Automated Testing Project
+
 Practice 3
 
-This project is a demo for automated UI testing (playwright).
+This project is a demo for automated UI testing using **Playwright** and **Cucumber (BDD)**.
 
 ---
-### Requirements
 
-* Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) (version 22.14.0).
-* npm or yarn
-* Chrome browser installed
+## Requirements
 
-#### Useful links:
-- Playwright https://playwright.dev/
-- Node https://nodejs.org/en
+- [Node.js](https://nodejs.org/en/download/) (version 22.14.0)
+- npm or yarn
+- Chrome browser installed
+
+### Useful links:
+- [Playwright](https://playwright.dev/)
+- [Cucumber.js](https://cucumber.io/docs/guides/10-minute-tutorial/)
+- [Node.js](https://nodejs.org/en)
+
 ---
 
+## Installation
 
-### Installation
+Clone the repository and install dependencies:
 
-Clone this repository and install dependencies:
 ```bash
 git clone https://github.com/rap1dity/testing-ui.git
-```
-
-Install dependencies:
-```bash
+cd testing-ui
 npm install
 ```
 
-### Running tests
-Run all tests:
+---
+
+## Running Tests
+
+### Run all Playwright tests:
 ```bash
 npm run test
 ```
 
----
-
-Launch GUI mode:
+### Run in GUI mode (with Playwright Test Runner):
 ```bash
 npm run test-ui
 ```
----
 
-Launch by tag @form
+### Run specific tag (Playwright):
 ```bash
 npx playwright test --grep "form"
 ```
 
-Custom command line to launch test
+### Custom command:
 ```bash
-npx cross-env VIEWPORT_WIDTH=1920 VIEWPORT_HEIGHT=1080  npx playwright test --grep "form" --headed --workers=2 --project='firefox' 
+npx cross-env VIEWPORT_WIDTH=1920 VIEWPORT_HEIGHT=1080 npx playwright test --grep "form" --headed --workers=2 --project='firefox'
 ```
+
 Where:
-
-`npx cross-env VIEWPORT_WIDTH=1920 VIEWPORT_HEIGHT=1080` - window size.
-
-`--grep "form"` - specific tag.
-
-`--headed` - mode with launching browser.
-
-`--workers=2` - launch tests in parallel with 2 queue.
-
-`--project='firefox'` - launch tests in firefox browsers. Firefox and chrome available.
+- `VIEWPORT_WIDTH` / `VIEWPORT_HEIGHT` — set viewport resolution
+- `--grep` — filter test by name/tag
+- `--headed` — open browser UI
+- `--workers` — number of parallel workers
+- `--project` — browser to run (`chromium`, `firefox`, etc.)
 
 ---
 
-### Project Structure
--`/common` - contain common files
+## Running Cucumber (BDD) Tests
 
--`/common/utils` - contain auxiliary functions
+### Run all BDD tests:
+```bash
+npx cucumber-js
+```
 
--`/src` - root folder
+### Run only tests with tag (e.g. @date):
+```bash
+npx cucumber-js --tags "@date"
+```
 
--`/src/pages` - contain page object files
-
--`/tests` - contain tests files
+### Run and generate report:
+```bash
+npx cucumber-js \
+  --require-module ts-node/register \
+  --require src/steps/**/*.ts \
+  --format progress-bar \
+  --format json:test-reports/report.json \
+  --tags "@checkboxes" \
+  src/features/**/*.feature
+```
 
 ---
 
-### Test Reports
-After each test run, a detailed report is generated
+## Project Structure
+
+```
+/common
+  └── utils/              → Utilities (e.g. data storage)
+  └── pages/              → Base page object class
+
+/src
+  └── pages/              → Page Object Models (DatePickerPage, SliderPage, etc.)
+  └── features/           → BDD feature files (.feature)
+  └── steps/              → Cucumber step definitions
+  └── hooks.ts            → Global test lifecycle (Before/After hooks)
+
+/tests                   → Playwright test files (non-BDD)
+```
+
+---
+
+## Test Reports
+
+After BDD test execution, a JSON report is saved:
+
+```
+test-reports/report.json
+```
+
+You can later convert it to an HTML report using tools like:
+
+```bash
+npx cucumber-html-reporter --theme bootstrap --jsonFile test-reports/report.json --output report.html
+```
