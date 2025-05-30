@@ -1,6 +1,5 @@
 import { BasePage } from '@common/pages/base.page';
 import { Locator, Page } from '@playwright/test';
-import UserCreator from '@common/utils/data-generator';
 import { IUserData } from '@common/interfaces/user-data.interface';
 
 export class FormPage extends BasePage {
@@ -24,9 +23,7 @@ export class FormPage extends BasePage {
     await this.open('/automation-practice-form');
   }
 
-  async fillRequiredFields(): Promise<IUserData> {
-    const user = UserCreator.createUser();
-
+  async fillRequiredFields(user: IUserData): Promise<IUserData> {
     await this.selectors.firstName.fill(user.firstName);
     await this.selectors.lastName.fill(user.lastName);
     await this.selectors.email.fill(`${user.firstName.toLowerCase()}.${user.lastName.toLowerCase()}@test.com`);
