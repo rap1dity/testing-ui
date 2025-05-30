@@ -3,7 +3,7 @@ import { expect, Page } from '@playwright/test';
 import { CheckboxesPage } from '@src/pages/checkboxes.page';
 import { DataStorage } from '@common/utils/data-storage';
 
-export type Context = {
+type Context = {
   page: Page;
   pageObj?: CheckboxesPage;
 };
