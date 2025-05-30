@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from '@common/pages/base.page';
+import { IUserAddress } from '@common/interfaces/user-address.interface';
 
 export default class TextBoxPage extends BasePage {
   private readonly selectors: Record<string, Locator>;
@@ -21,7 +22,7 @@ export default class TextBoxPage extends BasePage {
     await this.open('/text-box');
   }
 
-  async fillForm(data: { name: string; email: string; current: string; permanent: string }): Promise<void> {
+  async fillForm(data: IUserAddress): Promise<void> {
     await this.selectors.fullName.fill(data.name);
     await this.selectors.email.fill(data.email);
     await this.selectors.currentAddress.fill(data.current);

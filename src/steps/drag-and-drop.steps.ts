@@ -3,7 +3,7 @@ import { expect, Page } from '@playwright/test';
 import { DragAndDropPage } from '@src/pages/drag-and-drop.page';
 import { DataStorage } from '@common/utils/data-storage';
 
-export type Context = {
+type Context = {
   page: Page;
   pageObj?: DragAndDropPage;
 };

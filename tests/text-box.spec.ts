@@ -1,15 +1,18 @@
 import { test, expect } from '@playwright/test';
 import TextBoxPage from '@src/pages/text-box.page';
+import Fakerator from 'fakerator';
+
+const fakerator = Fakerator();
 
 test('TextBox: fill and submit data', async ({ page }) => {
   const textBox = new TextBoxPage(page);
   await textBox.openPage();
 
   const data = {
-    name: 'Some Person',
-    email: 'some.person@gmail.com',
-    current: '32312 Current',
-    permanent: '4363 Permanent',
+    name: fakerator.names.name(),
+    email: fakerator.internet.email(),
+    current: fakerator.address.street(),
+    permanent: fakerator.address.street(),
   };
 
   await textBox.fillForm(data);
